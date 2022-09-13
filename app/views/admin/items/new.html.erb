@@ -1,0 +1,24 @@
+<main>
+  <h1>商品新規登録</h1>
+
+  <%= form_with model: @item, url: '/items', method: :post do |f| %>
+    <h4>商品画像</h4>
+    <%= f.file_field :image, accept: "image/*" %>
+
+    <h4>商品名</h4>
+    <%= f.text_field :name %>
+
+    <h4>商品説明</h4>
+    <%= f.text_area :introduction %>
+
+    <h4>ジャンル</h4>
+    <%= f.select :genre_id, [["1","1"],["2","2"],["3","3"]] %><!--仮-->
+
+    <h4>税抜価格</h4>
+    <%= f.radio_button :is_active, :true %><!--文字列表示-->
+    <%= f.radio_button :is_active, :false %><!--〃-->
+
+    <%= f.submit '新規登録' %>
+  <% end %>
+
+</main>
