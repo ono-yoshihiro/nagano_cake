@@ -6,11 +6,61 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png') %></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+
+              <li class="nav-item">
+                <% if customer_signed_in? %>
+                  <button type="button" class="btn btn-light">マイページ</button><!--リンクはこれから-->
+                <% else %>
+                  <%= link_to 'About', '/about', class: "btn btn-light" %>
+                <% end %>
+              </li><span>　</span>
+
+              <li class="nav-item">
+                <button type="button" class="btn btn-light">商品一覧</button>
+              </li>
+              <span>　</span>
+
+              <% if customer_signed_in? %>
+                <li class="nav-item">
+                  <button type="button" class="btn btn-light">カート</button><!--リンクはこれから-->
+                </li>
+                <span>　</span>
+
+                <li class="nav-item">
+                  <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class:"btn btn-light" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to '新規登録', '/customers/sign_up', class: "btn btn-light" %>
+                </li>
+                <span>　</span>
+
+                <li class="nav-item">
+                  <%= link_to 'ログイン', '/customers/sign_in', class: "btn btn-light" %>
+                </li>
+                <span>　</span>
+              <% end %>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <%= yield %>
   </body>
 </html>
