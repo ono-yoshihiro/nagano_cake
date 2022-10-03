@@ -1,0 +1,40 @@
+
+    <div class = "row" style = "margin-top: 20px">
+    　<div class = "col-2 h4">登録情報</div>
+    　<%= link_to "編集する", customers_information_edit_path(@customer.id), class: "col-1 btn btn-success", :style => "margin-left: 20px" %>
+  　</div>
+
+    <div class = "row">
+      <table class = "col-8 table-bordered" style = "margin-top: 20px; height: 300px;">
+        <tr>
+          <td class = "col-3 table-active">氏名</td><td class = "col-9"><%= @customer.last_name %>　<%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <td class = "col-3 table-active">カナ</td><td class = "col-9"><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <td class = "col-3 table-active">郵便番号</td><td class = "col-9"><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td class = "col-3 table-active">住所</td><td class = "col-9"><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td class = "col-3 table-active">電話番号</td><td class = "col-9"><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <td class = "col-3 table-active">メールアドレス</td><td class = "col-9"><%= @customer.email %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class = "row" style = "margin-top: 40px">
+      <div class = "col-2 h4">配送先</div>
+      <%= link_to "一覧を見る", "/addresses", class: "col-2 btn btn-primary" %>
+    </div>
+
+    <div class = "row" style = "margin-top: 20px">
+      <div class = "col-2 h4">注文履歴</div>
+      <div class = "col-2 btn btn-primary">一覧を見る</div>
+    </div>
+
+</main>

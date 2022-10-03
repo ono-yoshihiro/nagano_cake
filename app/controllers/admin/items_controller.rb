@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-
+#管理者側
   def new
     @newitem = Item.new
   end
@@ -9,7 +9,7 @@ class Admin::ItemsController < ApplicationController
     if @newitem.save
       redirect_to admin_item_path(@newitem.id)
     else
-      @items = Item.all
+      @items = Item.page(params[:page])
       render :index
     end
   end
@@ -19,7 +19,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def edit

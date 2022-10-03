@@ -75,4 +75,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.hosts << "42312ba6500e4bedb5a2eeab7d68d1df.vfs.cloud9.ap-northeast-1.amazonaws.com"
+
+  config.web_console.whitelisted_ips = '61.214.16.140' #拒否されるので追加
 end

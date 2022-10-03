@@ -1,0 +1,61 @@
+<!--（顧客）注文情報入力-->
+<main>
+  <div class = "container-fluid" style = "margin-top: 40px">
+    <div class = "row">
+      <div class = "offset-1 h3">
+        <div style = "background-color: #EEEEEE; text-align: center; padding: 0 20px">注文情報入力</div>
+      </div>
+    </div>
+    <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
+      <div class = "row">
+        <div class = "col-1" style = "padding-left: 1em">
+          <h4>支払方法</h4>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-3" style = "padding-left: 2em">
+          <%= f.radio_button :payment_method, :credit_card %>
+          <%= f.label :payment_method, "クレジットカード", value: :credit_card %><br>
+          <%= f.radio_button :payment_method, :transfer %>
+          <%= f.label :payment_method, "銀行振込", value: :transfer %>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-1" style = "padding-left: 1em">
+          <h4>お届け先</h4>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-8 form-group" style = "padding-left: 2em">
+          <%= f.radio_button :address_number, 1 %>
+          <%= f.label :address_number_1, "ご自身の住所" %><br>
+          <span>　 </span>〒<%= current_customer.postal_code %> <%= current_customer.address %><br>
+          <span>　 </span><%= current_customer.full_name %><br>
+
+          <%= f.radio_button :address_number, 2 %>
+          <%= f.label :address_number_2, "登録済住所から選択" %><br>
+          <!--宛名も入れる-->
+          <%= f.collection_select :registered, current_customer.addresses.all, :id, :address, class: "form-control" %><br>
+
+          <%= f.radio_button :address_number, 3 %>
+          <%= f.label :address_number_3, "新しいお届け先" %>
+            <table class = "table">
+              <tr>
+                <th><%= f.label :shipping_postal_code, "郵便番号(ハイフンなし)" %></th>
+                <td><%= f.text_field :shipping_postal_code %></td>
+              </tr>
+              <tr>
+                <th><%= f.label :shipping_address, "住所" %></td>
+                <td><%= f.text_field :shipping_address %></td>
+              </tr>
+              <tr>
+                <th><%= f.label :shipping_name, "宛名" %></th>
+                <td><%= f.text_field :shipping_name %></td>
+              </tr>
+            </table>
+          <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</main>

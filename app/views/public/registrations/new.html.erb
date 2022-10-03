@@ -1,57 +1,86 @@
-<h2>新規会員登録</h2>
+<!--新規会員登録-->
+<main>
+  <div class = "container" style = "margin-top: 20px">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+    <div class = "row">
+      <h3 class = "bg-light">新規会員登録</h3>
+    </div>
 
-  <div class="field">
-    <%= f.label :"(姓)" %>
-    <%= f.text_field :last_name, placeholder: "令和", autofocus: true, autocomplete: "last_name" %>
-  </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+    <div class = "row">
+      <div class = "col-3" style = "display: table; padding-right: 0">
+        <p style = "display: table-cell; text-align: left;">名前</p>
+        <p style = "display: table-cell; text-align: right;">(姓)　</p>
+      </div>
 
-  <div class="field">
-    <%= f.label :"(名)" %>
-    <%= f.text_field :first_name, placeholder: "道子", autocomplete: "first_name" %>
-  </div>
+      <div class= "form-group col-3" style = "padding-left: 0">
+        <%= f.text_field :last_name, placeholder: "令和", autofocus: true, autocomplete: "last_name", size:28 %>
+      </div>
 
-  <div class="field">
-    <%= f.label :"(セイ)" %>
-    <%= f.text_field :last_name_kana, placeholder: "レイワ", autocomplete: "last_name_kana" %>
-  </div>
+      <div class= "form-group col-3">
+        <span>(名)</span>
+        <%= f.text_field :first_name, placeholder: "道子", autocomplete: "first_name", size:28  %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :"(メイ)" %>
-    <%= f.text_field :first_name_kana, placeholder: "ミチコ", autocomplete: "first_name_kana" %>
-  </div>
+    <div class = "row">
+      <div class = "col-3" style = "display: table; padding-right: 0">
+        <p style = "display: table-cell; text-align: left;">フリガナ</p>
+        <p style = "display: table-cell; text-align: right;">(セイ)</p>
+      </div>
 
-  <div class="field">
-    <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, placeholder: "sample@example.com", autocomplete: "email" %>
-  </div>
+      <div class= "form-group col-3" style = "padding-left: 0">
+        <%= f.text_field :last_name_kana, placeholder: "レイワ", autocomplete: "last_name_kana", size:28  %>
+      </div>
 
-  <div class="field">
-    <%= f.label :"郵便番号(ハイフンなし)" %>
-    <%= f.text_field :postal_code, placeholder: "0000000", autocomplete: "postal_code" %>
-  </div>
+      <div class= "form-group col-3">
+        <span>(メイ)</span>
+        <%= f.text_field :first_name_kana, placeholder: "ミチコ", autocomplete: "first_name_kana", size:28  %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :"住所" %>
-    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", autocomplete: "address" %>
-  </div>
+    <div class = "row">
+      <div class = "col-3" style = "padding-right: 0">メールアドレス</div>
+      <div class= "form-group col-3" style = "padding-left: 0">
+        <%= f.email_field :email, placeholder: "sample@example.com", autocomplete: "email", size:28  %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-3" style = "padding-right: 0">郵便番号(ハイフンなし)</div>
+      <div class= "form-group col-3" style = "padding-left: 0">
+        <%= f.text_field :postal_code, placeholder: "0000000", autocomplete: "postal_code", size:28  %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-3" style = "padding-right: 0">住所</div>
+      <div class= "form-group col-3" style = "padding-left: 0">
+        <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", autocomplete: "address", size:28  %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-3" style = "padding-right: 0">電話番号</div>
+      <div class= "form-group col-3" style = "padding-left: 0">
+        <%= f.text_field :telephone_number, placeholder: "0000000000", autocomplete: "telephone_number", size:28  %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-3" style = "padding-right: 0">パスワード(6文字以上)</div>
+      <div class= "form-group col-3" style = "padding-left: 0">
+        <%= f.password_field :password, autocomplete: "new-password", size:28  %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-3" style = "padding-right: 0">パスワード(確認用)</div>
+      <div class= "form-group col-3" style = "padding-left: 0">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", size:28  %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :"電話番号" %>
-    <%= f.text_field :telephone_number, placeholder: "0000000000", autocomplete: "telephone_number" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :"パスワード(6文字以上)" %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :"パスワード(確認用)" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+
+
 
   <div class="actions">
     <%= f.submit "新規登録" %>
@@ -61,6 +90,9 @@
 <h2>既に登録済みの方</h2>
 
 <%= link_to "こちら", new_session_path(resource_name) %>　からログインしてください。
+
+
+</main>
 
 <!--デフォルトの記述は以下だが、直接リンクを記述した。-->
 <!--< %= render "public/shared/links" %>-->

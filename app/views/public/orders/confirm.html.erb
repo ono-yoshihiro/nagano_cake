@@ -1,0 +1,100 @@
+<!--（顧客）注文情報確認-->
+<main>
+  <div class = "container-fluid" style = "margin-top: 40px">
+    <div class = "row">
+      <div class = "offset-1 h3">
+        <div style = "background-color: #EEEEEE; text-align: center; padding: 0 20px">注文情報確認</div>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-8">
+        <table class = "table table-bordered">
+          <thead>
+            <tr>
+              <th>商品名</th>
+              <th>単価(税込)</th>
+              <th>数量</th>
+              <th>小計</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= @cart_items.each do |cart_item| %>
+              <tr>
+                <td>
+                  <%= cart_item.item.name %>
+                </td>
+                <td>
+                  <%= cart_item.item.add_tax_price.to_s(:delimited) %>
+                </td>
+                <td>
+                  <%= cart_item.amount %>
+                </td>
+                <td>
+                  <%= cart_item.subtotal.to_s(:delimited) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class = "col-4">
+        <table class = "table table-bordered">
+          <tr>
+            <th>
+              送料
+            </th>
+            <td>
+              <%= @order.shipping_price %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              商品合計
+            </th>
+            <td>
+              <%= @cart_items.inject(0) { |sum, item| sum + item.subtotal }.to_s(:delimited) %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              請求金額
+            </th>
+            <td>
+              <%= @order.total_price.to_s(:delimited) %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-1">
+        <h3>支払方法</h3>
+      </div>
+      <div class = "col-11">
+        <%= @order.payment_method_i18n %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-1">
+        <h3>お届け先</h3>
+      </div>
+      <div class = "col-11">
+        〒<%= @order.shipping_postal_code %> <%= @order.shipping_address %><br>
+        <%= @order.shipping_name %>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+        <%= f.hidden_field :customer_id %>
+        <%= f.hidden_field :shipping_postal_code %>
+        <%= f.hidden_field :shipping_address %>
+        <%= f.hidden_field :shipping_name %>
+        <%= f.hidden_field :shipping_price %>
+        <%= f.hidden_field :total_price %>
+        <%= f.hidden_field :payment_method %>
+        <%= f.hidden_field :status %>
+        <%= f.submit "注文を確定する", class: "btn btn-success" %>
+      <% end %>
+    </div>
+    
+  </main>

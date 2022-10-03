@@ -1,0 +1,84 @@
+<!--（顧客）カート-->
+<main>
+  <div class = "container-fluid" style = "margin-top: 40px">
+    <div class = "row">
+      <div class = "offset-1 h3">
+        <div style = "background-color: #EEEEEE; text-align: center; padding: 0 20px">ショッピングカート</div>
+      </div>
+      <div class = "col-2 offset-7">
+        <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+    <div class = "row" style = "margin-top: 20px">
+      <div class = "col-10 offset-1">
+        <table class = "table table-bordered">
+          <thead>
+            <tr bgcolor = "#EEEEEE">
+              <th>
+                商品名
+              </th>
+              <th>
+                単価(税込)
+              </th>
+              <th>
+                数量
+              </th>
+              <th>
+                小計
+              </th>
+              <th>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart_items.each do |cart_item| %>
+              <tr>
+                <td>
+                  <%= image_tag cart_item.item.image, size: "100x80"%>
+                  <%= cart_item.item.name %>
+                </td>
+                <td>
+                  <%= cart_item.item.add_tax_price.to_s(:delimited) %>
+                </td>
+                <td class = "form-group">
+                  <%= form_with model: cart_item, url: "cart_items/#{cart_item.id}", method: :patch do |f| %>
+                      <%= f.select :amount, *[1..10], class: "form-control" %>
+                      <%= f.submit '変更', class: "btn btn-success" %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= cart_item.subtotal.to_s(:delimited) %>
+                </td>
+                <td>
+                  <%= link_to "削除", "cart_items/#{cart_item.id}", method: :delete, class: "btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class = "row" style = "margin-top: 20px">
+      <div class = "col-2 offset-1">
+        <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
+      </div>
+      <div class = "col-2 offset-6">
+        <table class = "table table-bordered">
+          <td bgcolor = "#EEEEEE">
+            合計金額
+          </td>
+          <td>
+            <%= @total_price.to_s(:delimited) %>
+          </td>
+        </table>
+      </div>
+    </div>
+    <div class = "row" style = "margin-top: 20px">
+      <div class = "col-1 offset-5">
+      　<%= link_to "情報入力に進む", orders_new_path, class: "btn btn-success" %>
+      </div>
+    </div>
+
+
+  </div>
+</main>
