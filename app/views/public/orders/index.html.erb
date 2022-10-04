@@ -31,10 +31,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <%= @orders.each do |order| %>
+        <% @orders.each do |order| %>
+          <tr>
             <td>
-              <%= order.created_at %>
+              <%= order.created_at.strftime('%Y/%m/%d') %>
             </td>
             <td>
               〒<%= order.shipping_postal_code %><br>
@@ -42,19 +42,21 @@
               <%= order.shipping_name %>
             </td>
             <td>
-              <!--更にeachで書く？ちょっと頭回らない-->
+              <% order.order_details.each do |order_detail| %>
+                <%= order_detail.item.name %><br>
+              <% end %>
             </td>
             <td>
               <%= order.total_price %>
             </td>
             <td>
-              <%= order.status %>
+              <%= order.status_i18n %>
             </td>
             <td>
-              表示する
+              <%= link_to "表示する", "/orders/#{order.id}", class: "btn btn-primary" %>
             </td>
-          <% end %>
-        </tr>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

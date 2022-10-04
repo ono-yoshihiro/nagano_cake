@@ -18,7 +18,7 @@
             </tr>
           </thead>
           <tbody>
-            <%= @cart_items.each do |cart_item| %>
+            <% @cart_items.each do |cart_item| %>
               <tr>
                 <td>
                   <%= cart_item.item.name %>
@@ -96,5 +96,5 @@
         <%= f.submit "注文を確定する", class: "btn btn-success" %>
       <% end %>
     </div>
-    
+
   </main>
