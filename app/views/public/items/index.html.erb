@@ -1,21 +1,25 @@
+<!--（顧客）商品一覧-->
 <main>
   <div class = "container-fluid">
     <div class = "row" style = "margin-top: 40px">
       <%= render 'admin/genres/genre_search', genres: @genres %>
       <div class = "col-10">
-        <div class = "row">
-          商品一覧（全ｘ件）
+        <div class = "row d-flex align-items-end" style = "margin-left: 20px">
+          <h2>商品一覧</h2><h4>（全<%= @number.count %>件）</h4>
         </div>
-        <div class = "row">
+        <div class = "row" style = "margin-left: 20px">
           <% @items.each do |item| %>
-          <div class = "col-3">
+          <div class = "col-3" style = "margin-top: 40px">
             <%= link_to item_path(item.id) do %>
-              <%= image_tag item.image, size: '200x200' %>
+              <%= image_tag item.image, size: '250x200' %>
             <% end %><br>
             <%= item.name %><br>
             ￥<%= item.add_tax_price.to_s(:delimited) %>
           </div>
           <% end %>
+        </div>
+        <div class = "row d-flex align-items-center justify-content-center" style = "margin-top: 200px">
+          <%= paginate @items, theme: 'bootstrap-5' %>
         </div>
       </div>
     </div>

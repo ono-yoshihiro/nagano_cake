@@ -6,12 +6,12 @@
         <div style = "background-color: #EEEEEE; text-align: center; padding: 0 20px">商品一覧</div>
       </div>
       <div class = "offset-6">
-        <%= link_to "＋", new_admin_item_path, class: "btn btn-light rounded-curcle p-0", :style => "width: 2rem; height: 2rem" %>
+        <%= link_to "＋", new_admin_item_path, class: "btn btn-light rounded-circle p-0", :style => "width: 2rem; height: 2rem" %>
       </div>
     </div>
   <div class = "row">
     <div class = "col-10 offset-1">
-      <table height = "250" class= "border-top border-bottom">
+      <table class= "table table-borderless border-top border-bottom">
         <thead>
           <tr bgcolor = "#EEEEEE">
             <th class = "col-1">商品ID</th>
@@ -39,9 +39,9 @@
               <% end %>
             </tr>
           <% end %>
-          <%= paginate @items %>
         </tbody>
       </table>
+      <%= paginate @items, theme: 'bootstrap-5' %>
     </div>
   </div>
 </main>

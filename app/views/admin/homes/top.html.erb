@@ -6,8 +6,8 @@
         <div style = "background-color: #EEEEEE; text-align: center; padding: 0 20px">注文履歴一覧</div>
       </div>
     </div>
-    <div class = "row">
-      <table class = "table">
+    <div class = "row" style = "margin-top: 20px">
+      <table class = "table border-bottom col-10 offset-1">
         <thead>
           <tr bgcolor = "#EEEEEE">
             <th>購入日時</th>
@@ -20,7 +20,9 @@
           <% @orders.each do |order| %>
             <tr>
               <td>
-                <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+                <%= link_to admin_order_path(id=order.id) do %>
+                  <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+                <% end %>
               </td>
               <td>
                 <%= order.customer.full_name %>
@@ -35,6 +37,9 @@
           <% end %>
         </tbody>
       </table>
+    </div>
+    <div class = "row d-flex align-items-center justify-content-center" style = "margin-top: 20px">
+      <%= paginate @orders, theme: 'bootstrap-5' %>
     </div>
   </div>
 </main>

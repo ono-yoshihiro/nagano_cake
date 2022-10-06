@@ -26,6 +26,7 @@ get 'addresses/:id/edit' => 'public/addresses#edit', as: 'edit_addresses'
 patch 'addresses/:id' => 'public/addresses#update'
 delete 'addresses/:id' => 'public/addresses#destroy', as: 'destroy_addresses'
 get 'admin' => 'admin/homes#top'
+patch 'admin/orders/:order_id/order_details/:id' => 'admin/order_details#update'
 
 # 管理者用
   # URL /admin/sign_in ...
@@ -38,7 +39,6 @@ get 'admin' => 'admin/homes#top'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
-    resources :order_details, only: [:update]
   end
 
 # 顧客用

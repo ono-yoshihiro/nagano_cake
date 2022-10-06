@@ -4,10 +4,9 @@
     <div class = "row" style = "margin-top: 40px">
       <%= render 'admin/genres/genre_search', genres: @genres %>
       <div class = "col-10">
-
         <div class = "row">
           <div class = "col-3">
-            <%= image_tag @item.image, size: '200x200' %>
+            <%= image_tag @item.image, size: '400x250' %>
           </div>
           <div class = "col-9">
             <div class = "row h2">
@@ -16,20 +15,20 @@
             <div class = "row h5" style = "margin-top: 20px">
               <%= @item.introduction %>
             </div>
-            <div class = "row" style = "margin-top: 20px">
-              <h2>￥<%= @item.add_tax_price.to_s(:delimited) %></h2><p style = "margin-top:16px">（税込）</p>
+            <div class = "row d-flex align-items-end" style = "margin-top: 20px">
+              <h2>￥<%= @item.add_tax_price.to_s(:delimited) %></h2><p>（税込）</p>
             </div>
           </div>
         </div>
-
         <%= form_with model: @cart_item, url: {controller: 'cart_items', action: 'create' }, method: :post do |f| %>
           <div class = "row form-group" style = "margin-top: 20px">
             <%= f.hidden_field :item_id, :value => @item.id %>
             <div class = "col-2 offset-3">
-              <%= f.select :amount, *[1..10], {prompt: "--個数選択--" }, class: "form-control" %>
+              <%= f.select :amount, *[1..10], {prompt: "個数選択" }, class: "form-control" %>
             </div>
             <div class = "col-2">
               <%= f.submit 'カートに入れる', class: "form-control btn btn-success" %>
+              
             </div>
           </div>
         <% end %>

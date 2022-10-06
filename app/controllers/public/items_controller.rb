@@ -1,7 +1,8 @@
 class Public::ItemsController < ApplicationController
 #顧客側
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).per(8)
+    @number = Item.all
     @genres = Genre.all
   end
 

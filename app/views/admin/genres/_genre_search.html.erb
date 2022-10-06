@@ -1,20 +1,16 @@
   <div class = "col-2">
-    <table class = "table" >
-      <thead>
-        <tr>
-          <th>
-            ジャンル検索
-          </th>
-        </tr>
-      </thead>
-      <% genres.each do |genre| %>
-      <tbody>
-        <tr>
-          <td>
-            <%= genre.name %>
-          </td>
-        </tr>
-      </tbody>
-      <% end %>
+    <table class = "table table-bordered border-primary">
+      <tr>
+        <th style = "text-align: center">
+          ジャンル検索
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <% genres.each do |genre| %>
+          <%= genre.name %><br><br>
+          <% end %>
+        </th>
+      </tr>
     </table>
   </div>
