@@ -28,8 +28,12 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @edititem = Item.find(params[:id])
-    @edititem.update(item_params)
-    redirect_to '/admin/items'
+    if @edititem.update(item_params)
+      redirect_to admin_item_path
+    else
+      #本当はrenderでエラーメッセージも表示させたいが…
+      redirect_to admin_item_path
+    end
   end
 
   private

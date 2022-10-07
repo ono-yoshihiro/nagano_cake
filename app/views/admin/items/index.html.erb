@@ -5,11 +5,11 @@
       <div class = "offset-1 h3">
         <div style = "background-color: #EEEEEE; text-align: center; padding: 0 20px">商品一覧</div>
       </div>
-      <div class = "offset-6">
-        <%= link_to "＋", new_admin_item_path, class: "btn btn-light rounded-circle p-0", :style => "width: 2rem; height: 2rem" %>
+      <div class = "offset-8">
+        <%= link_to "＋", new_admin_item_path, class: "btn btn-light rounded-circle p-0 ", :style => "width: 2rem; height: 2rem" %>
       </div>
     </div>
-  <div class = "row">
+  <div class = "row" style = "margin-top: 20px">
     <div class = "col-10 offset-1">
       <table class= "table table-borderless border-top border-bottom">
         <thead>
@@ -25,9 +25,9 @@
           <% @items.each do |item| %>
             <tr>
               <td><%= item.id %></td><!--色は消すべき？-->
-              <td style="text-decoration: underline">
+              <td>
                 <%= link_to admin_item_path(item.id) do %>
-                  <%= item.name %>
+                  <u style = "color:black"><%= item.name %></u>
                 <% end %>
               </td>
               <td><%= item.price.to_s(:delimited) %></td>
@@ -41,6 +41,7 @@
           <% end %>
         </tbody>
       </table>
+      <div class = "d-flex align-items-center justify-content-center"
       <%= paginate @items, theme: 'bootstrap-5' %>
     </div>
   </div>

@@ -6,7 +6,7 @@
         <div style = "background-color: #EEEEEE; text-align: center; padding: 0 20px">会員一覧</div>
       </div>
     </div>
-  <div class = "row">
+  <div class = "row" style = "margin-top: 20px">
     <div class = "col-10 offset-1">
       <table class = "table">
         <thead>
@@ -23,20 +23,23 @@
               <td><%= customer.id %></td>
               <td>
                 <%= link_to admin_customer_path(customer.id) do %>
-                  <%= customer.last_name %><%= customer.first_name %>
+                  <u class = "text-dark"><%= customer.last_name %><%= customer.first_name %></u>
                 <% end %>
               </td>
               <td><%= customer.email %></td>
-              <td>
-                <% if customer.is_deleted == true %>退会
-                <% else %>有効
-                <% end %>
+              <% if customer.is_deleted == true %>
+                <td style = "color: gray">退会</td>
+              <% else %>
+                <td class = "text-success">有効</td>
+              <% end %>
               </td>
             </tr>
           <% end %>
-          <%= paginate @customers %>
         </tbody>
       </table>
+      <div class = "d-flex align-items-center justify-content-center">
+        <%= paginate @customers, theme: 'bootstrap-5' %>
+      </div>
     </div>
   </div>
 </main>

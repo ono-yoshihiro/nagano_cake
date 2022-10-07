@@ -14,8 +14,12 @@ class Admin::CustomersController < ApplicationController
 
   def update
     @editcustomer = Customer.find(params[:id])
-    @editcustomer.update(customer_params)
-    redirect_to '/admin/customers'
+    if @editcustomer.update(customer_params)
+      redirect_to admin_customer_path
+    else
+      #本当はrenderでエラーメッセージを表示させたいがエラーになる
+      redirect_to admin_customer_path
+    end
   end
 
   private

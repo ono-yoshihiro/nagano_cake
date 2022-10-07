@@ -16,15 +16,15 @@
         <%= @editcustomer.id %>
       </div>
     </div>
-    <%= form_with model: @editcustomer, :url => {:action => :update}, method: :patch do |f| %>
+    <%= form_with model: @editcustomer, url: admin_customer_path(id = @editcustomer.id), method: :patch do |f| %>
       <div class = "row form-group">
         <div class = "col-1 offset-1">
           氏名
         </div>
-        <div class = "col-1">
+        <div class = "col-2">
           <%= f.text_field :last_name, class: "form-control" %>
         </div>
-        <div class = "col-1">
+        <div class = "col-2">
           <%= f.text_field :first_name, class: "form-control" %>
         </div>
       </div>
@@ -32,10 +32,10 @@
         <div class = "col-1 offset-1">
           フリガナ
         </div>
-        <div class = "col-1">
+        <div class = "col-2">
           <%= f.text_field :last_name_kana, class: "form-control" %>
         </div>
-        <div class = "col-1">
+        <div class = "col-2">
           <%= f.text_field :first_name_kana, class: "form-control" %>
         </div>
       </div>
@@ -43,7 +43,7 @@
         <div class = "col-1 offset-1">
           郵便番号
         </div>
-        <div class = "col-1">
+        <div class = "col-2">
           <%= f.text_field :postal_code, class: "form-control" %>
         </div>
       </div>
@@ -51,7 +51,7 @@
         <div class = "col-1 offset-1">
           住所
         </div>
-        <div class = "col-3">
+        <div class = "col-5">
           <%= f.text_field :address, class: "form-control" %>
         </div>
       </div>
@@ -59,7 +59,7 @@
         <div class = "col-1 offset-1">
           電話番号
         </div>
-        <div class = "col-1">
+        <div class = "col-2">
           <%= f.text_field :telephone_number, class: "form-control" %>
         </div>
       </div>
@@ -67,7 +67,7 @@
         <div class = "col-1 offset-1">
           メールアドレス
         </div>
-        <div class = "col-1">
+        <div class = "col-2">
           <%= f.email_field :email, class: "form-control" %>
         </div>
       </div>
@@ -75,7 +75,7 @@
         <div class = "col-1 offset-1">
           会員ステータス
         </div>
-        <div class = "col-1">
+        <div class = "col-2">
           <%= f.radio_button :is_deleted, :false %>
           <%= f.label :is_deleted, "有効", {value: :false} %>
           <%= f.radio_button :is_deleted, :true %>
@@ -83,7 +83,7 @@
         </div>
       </div>
       <div class = "row">
-        <div class = "col-1 offset-2">
+        <div class = "col-2 offset-2">
           <%= f.submit '変更を保存', class: "btn btn-success" %>
         </div>
       </div>

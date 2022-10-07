@@ -21,7 +21,7 @@
         氏名
       </div>
       <div>
-        <%= @customer.last_name %> <%= @customer.first_name %>
+        <%= @customer.last_name %>　<%= @customer.first_name %>
       </div>
     </div>
     <div class = "row" style = "margin-top: 20px">
@@ -29,7 +29,7 @@
         フリガナ
       </div>
       <div>
-        <%= @customer.last_name_kana %> <%= @customer.first_name_kana %>
+        <%= @customer.last_name_kana %>　<%= @customer.first_name_kana %>
       </div>
     </div>
 
@@ -73,11 +73,15 @@
       <div class = "col-1 offset-1">
         会員ステータス
       </div>
-      <div>
-        <% if @customer.is_deleted == true %>退会
-        <% else %>有効
-        <% end %>
-      </div>
+      <% if @customer.is_deleted == true %>
+        <div>
+          退会
+        </div>
+      <% else %>
+        <div class = "text-success">
+          有効
+        </div>
+      <% end %>
     </div>
 
     <div class = "row" style = "margin-top: 20px">
@@ -85,7 +89,7 @@
         <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success" %>
       </div>
       <div class = "col-2">
-        <button class = "btn btn-primary">注文履歴一覧を見る</button>
+        <%= link_to "注文履歴一覧を見る", admin_path, class: "btn btn-primary" %>
       </div>
     </div>
   </div>

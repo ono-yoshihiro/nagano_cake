@@ -62,7 +62,7 @@
                 <td class = "col-1"><%= order_detail.amount %></td>
                 <td class = "col-1"><%= (order_detail.purchase_price * order_detail.amount).to_s(:delimited) %></td>
                 <!--【エラー】admin/orders/admin/:order_id/order_details/:id　と"orders/"の後ろに何故かもう一度"admin"が出てエラーになっているみたい-->
-                <%= form_with model: order_detail, url: "admin/orders/#{order_detail.order_id}/order_details/#{order_detail.id}", method: :patch do |f| %>
+                <%= form_with model: order_detail, url: "#{order_detail.order_id}/order_details/#{order_detail.id}", method: :patch do |f| %>
                   <td class = "col-1">
                     <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}, {}, {class: "form-control"} %>
                   </td>
