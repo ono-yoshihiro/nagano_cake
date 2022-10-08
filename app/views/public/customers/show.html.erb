@@ -1,11 +1,17 @@
-
-    <div class = "row" style = "margin-top: 20px">
-    　<div class = "col-2 h4">登録情報</div>
-    　<%= link_to "編集する", customers_information_edit_path(@customer.id), class: "col-1 btn btn-success", :style => "margin-left: 20px" %>
-  　</div>
-
+<!--（顧客）マイページ-->
+<main>
+  <div class = "container-fluid" style = "margin-top: 40px">
     <div class = "row">
-      <table class = "col-8 table-bordered" style = "margin-top: 20px; height: 300px;">
+      <div class = "offset-1 h3">
+        <div style = "background-color: #EEEEEE; text-align: center; padding: 0 20px">マイページ</div>
+      </div>
+    </div>
+    <div class = "row" style = "margin-top: 40px">
+    　<div class = "col-1 offset-1 h4">登録情報</div>
+    　<%= link_to "編集する", customers_information_edit_path(@customer.id), class: "col-1 btn btn-success" %>
+    </div>
+    <div class = "row" style = "margin-top: 20px">
+      <table class = "col-8 offset-1 table-bordered" style = "margin-top: 20px; height: 300px;">
         <tr>
           <td class = "col-3 table-active">氏名</td><td class = "col-9"><%= @customer.last_name %>　<%= @customer.first_name %></td>
         </tr>
@@ -26,15 +32,13 @@
         </tr>
       </table>
     </div>
-
     <div class = "row" style = "margin-top: 40px">
-      <div class = "col-2 h4">配送先</div>
-      <%= link_to "一覧を見る", addresses_path, class: "col-2 btn btn-primary" %>
+      <div class = "col-1 offset-1 h4">配送先</div>
+      <%= link_to "一覧を見る", addresses_path, class: "col-1 btn btn-primary" %>
     </div>
-
     <div class = "row" style = "margin-top: 20px">
-      <div class = "col-2 h4">注文履歴</div>
-      <%= link_to "一覧を見る", orders_path, class: "col-2 btn btn-primary" %>
+      <div class = "col-1 offset-1 h4">注文履歴</div>
+      <%= link_to "一覧を見る", orders_path, class: "col-1 btn btn-primary" %>
     </div>
-
+  </div>
 </main>

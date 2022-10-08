@@ -11,16 +11,18 @@ class Public::CustomersController < ApplicationController
   def update
     @editcustomer = current_customer
     @editcustomer.is_deleted = false
-    @editcustomer.update(customer_params)
-    redirect_to '/customers/my_page'
+    if @editcustomer.update(customer_params)
+      redirect_to '/customers/my_page'
+    else
+      redirect_to '/customers/my_page'
+    end
   end
 
   def unsubscribe
   end
 
   def withdraw
-    @customer = current_customer
-    @customer.update(is_deleted: true)
+    current_customer.update(is_deleted: true)
     reset_session
     redirect_to root_path
   end

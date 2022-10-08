@@ -1,64 +1,50 @@
-<!--会員情報編集ページ-->
+<!--（顧客）会員情報編集-->
 <main>
-  <div class = "container" style = "margin-top: 20px">
-
+  <div class = "container-fluid" style = "margin-top: 40px">
     <div class = "row">
-      <h3 class = "bg-light">会員情報編集</h3>
+      <div class = "offset-1 h3">
+        <div style = "background-color: #EEEEEE; text-align: center; padding: 0 40px">会員情報編集</div>
+      </div>
     </div>
-
-    <%= form_with model: @editcustomer, :url => {:action => :update}, method: :patch do |f| %>
+    <%= form_with model: @editcustomer, url: customers_information_path, method: :patch do |f| %>
     <div class = "row" style = "margin-top: 20px">
-      <div class = "col-2">氏名</div>
-      <div class= "form-group col-3">
-        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name"%>
-      </div>
-      <div class= "form-group col-3">
-        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name"%>
-      </div>
-    </div>
-
-    <div class = "row">
-      <div class = "col-2">フリガナ</div>
-      <div class= "form-group col-3">
-        <%= f.text_field :last_name_kana, autocomplete: "last_name_kana"%>
-      </div>
-      <div class= "form-group col-3">
-        <%= f.text_field :first_name_kana, autocomplete: "first_name_kana"%>
-      </div>
-    </div>
-
-    <div class = "row">
-      <div class = "col-2">郵便番号</div>
-      <div class= "form-group col-3">
-        <%= f.text_field :postal_code, autocomplete: "postal_code"%>
-      </div>
-    </div>
-
-    <div class = "row">
-      <div class = "col-2">住所</div>
-      <div class= "form-group col-3">
-        <%= f.text_field :address, autocomplete: "address"%>
-      </div>
-    </div>
-
-    <div class = "row">
-      <div class = "col-2">電話番号</div>
-      <div class= "form-group col-3">
-        <%= f.text_field :telephone_number, autocomplete: "telephone_number"%>
+      <div class = "col-5 offset-1">
+        <table class = "table table-borderless">
+          <tr>
+            <th class = "align-middle" style = "width: 10%">氏名</th>
+            <td class = "align-middle" style = "width: 10%"><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control"%></td>
+            <td class = "align-middle" style = "width: 10%"><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %></td>
+            <td style = "width: 10%"></td>
+          </tr>
+          <tr>
+            <th class = "align-middle">フリガナ</th>
+            <td class = "align-middle"><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: "form-control"%></td>
+            <td class = "align-middle"><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th class = "align-middle">郵便番号</th>
+            <td class = "align-middle"><%= f.text_field :postal_code, autocomplete: "postal_code", class: "form-control"%></td>
+          </tr>
+          <tr>
+            <th class = "align-middle">住所</th>
+            <td colspan = "3" class = "align-middle"><%= f.text_field :address, autocomplete: "address", class: "form-control"%></td>
+          </tr>
+          <tr>
+            <th class = "align-middle">電話番号</th>
+            <td class = "align-middle"><%= f.text_field :telephone_number, autocomplete: "telephone_number", class: "form-control"%></td>
+          </tr>
+          <tr>
+            <th class = "align-middle">メールアドレス</th>
+            <td class = "align-middle"><%= f.email_field :email, autocomplete: "email", class: "form-control"%></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td colspan = "2"><%= f.submit "編集内容を保存", class: "btn btn-success" %></td>
+            <td><%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger" %></td>
+          </tr>
+        </table>
       </div>
     </div>
-
-    <div class = "row">
-      <div class = "col-2">メールアドレス</div>
-      <div class= "form-group col-3">
-        <%= f.email_field :email, autocomplete: "email"%>
-      </div>
-    </div>
-
-    <div class = "row">
-      <%= f.submit "編集内容を保存", class: "offset-2 col-3 btn btn-success" %>
-      <%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger offset-1 col-1" %>
-
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </main>
